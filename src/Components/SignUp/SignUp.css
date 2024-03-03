@@ -1,1 +1,58 @@
 /*# sourceMappingURL=SignUp.css.map */
+
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: space-around;
+    width: 600px;
+    height: 500px;
+    margin-right: auto;
+    margin-left: auto;
+    background: #FAF9F6;
+    padding: 5%;
+    border-radius: 5%;
+}
+
+.formBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input{
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 13px;
+    background-color: #B2BABB; 
+}
+
+::placeholder{
+    color: #2C3E50;
+}
+
+button{
+      outline: none;
+      background: #E67E22;
+      width: 40%;
+      border: 0;
+      border-radius: 20px 20px;
+      padding: 12px 20px;
+      color: black;
+      font-weight: bolder;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin: 2% 30%;
+}
+
+.heading{
+    color: #2C3E50;
+    margin-bottom: 5%;
+}
