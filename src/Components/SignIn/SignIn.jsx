@@ -1,12 +1,17 @@
 import React , {useState} from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './SignIn.css';
 
 const SignIn = () => {
 
     const [email, checkEmail] = useState("")
     const [password, checkPassword] = useState("")
+
+    const navigate = useNavigate(); 
+    const handleSignInClick = () => {
+        navigate('/SignUp'); 
+    };
 
     const CheckUserDetails = async () => {
     
@@ -36,7 +41,7 @@ const SignIn = () => {
                         <input onChange={(e)=>  checkEmail(e.target.value)} name='email' value={email}  placeholder='Email'  type='text'></input>
                         <input onChange={(e)=>  checkPassword(e.target.value)} name='password' value={password}  placeholder='Password'  type='password'></input>
                         <section class="formButton">
-                            <Link to="/SignUp"><button>Create Account</button></Link>
+                            <button className="submitButton" onClick={handleSignInClick}>Create Account</button>
                             <button class="submitButton" onClick={CheckUserDetails}>Submit</button>
                         </section>    
                     </form>
