@@ -9,6 +9,7 @@ const SignIn = () => {
     const [password, checkPassword] = useState("")
 
     const navigate = useNavigate(); 
+
     const handleSignInClick = () => {
         navigate('/SignUp'); 
     };
@@ -41,7 +42,7 @@ const SignIn = () => {
                         <input onChange={(e)=>  checkEmail(e.target.value)} name='email' value={email}  placeholder='Email'  type='text'></input>
                         <input onChange={(e)=>  checkPassword(e.target.value)} name='password' value={password}  placeholder='Password'  type='password'></input>
                         <section class="formButton">
-                            <button className="submitButton" onClick={handleSignInClick}>Create Account</button>
+                        <button className="submitButton" onClick={handleSignInClick}>Create Account</button>
                             <button class="submitButton" onClick={CheckUserDetails}>Submit</button>
                         </section>    
                     </form>
