@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React , {useState} from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import './SignUp.css';
 axios.defaults.withCredentials = true
 axios.defaults.xsrfCookieName = 'XSRF-TOKEN'; // Set the default CSRF token cookie name
 axios.defaults.xsrfHeaderName = 'X-CSRFToken'; // Set the default CSRF token header name
 
 const SignUp = () => {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [password, setPassword] = useState('');
-    const [location, setLocation] = useState('');
-    // const [csrfToken, setCsrfToken] = useState('');
 
+    const [name, setName] = useState("")
+    const [email, setEmail] = useState("")
+    const [phoneNumber, setPhoneNumber] = useState("")
+    const [password, setPassword] = useState("")
+    const [location, setLocation] = useState("")
+    const [confirmPassword, checkPassword] = useState("")
     // const fetchCsrfToken = async () => {
     //     try {
     //         const response = await axios.get('http://127.0.0.1:8000/api/get_csrf_token/');
@@ -56,45 +58,68 @@ const SignUp = () => {
     };
 
     const AddUserDetails = async () => {
-        const formData = new FormData();
 
-        formData.append('user_name', name);
-        formData.append('user_email', email);
-        formData.append('user_phone', phoneNumber);
-        formData.append('password', password);
-        formData.append('location', location);
-
-        try {
-            const csrftoken = getCookie('XSRF-TOKEN');
-            await axios.post(
-                'http://localhost:8000/api/debug/users/signup/',
-                formData, 
-                {
-                    withCredentials: true,
-                    headers: {
-                        'X-CSRFTOKEN': csrftoken
-                    }
-                },
-            );
-        } catch (error) {
-            console.error('Error submitting user details:', error);
+        if(password !== confirmPassword && password.length < 6 && checkPassword.length < 6)
+        {
+            alert("Confirmed password didn't match")
         }
-    };
+        else
+        {
+            const formData = new FormData();
+
+            formData.append('user_name', name);
+            formData.append('user_email', email);
+            formData.append('user_phone', phoneNumber);
+            formData.append('password', password);
+            formData.append('location', location);
+
+            try {
+                const csrftoken = getCookie('XSRF-TOKEN');
+                await axios.post(
+                    'http://localhost:8000/api/debug/users/signup/',
+                    formData, 
+                    {
+                        withCredentials: true,
+                        headers: {
+                            'X-CSRFTOKEN': csrftoken
+                        }
+                    },
+                );
+            } catch (error) {
+                console.error('Error submitting user details:', error);
+            }
+        }
+        
+
+    }
+
+    
 
     return (
-        <div>
-            <h1>Sign Up</h1>
-            <form method='POST'>
-                <CSRFTOKEN />
-                <input onChange={(e) => setName(e.target.value)} name='name' value={name} placeholder='Name' type='text' />
-                <input onChange={(e) => setEmail(e.target.value)} name='email' value={email} placeholder='Email' type='email' />
-                <input onChange={(e) => setPhoneNumber(e.target.value)} name='phoneNumber' value={phoneNumber} placeholder='Phone Number' type='tel' />
-                <input onChange={(e) => setPassword(e.target.value)} name='password' value={password} placeholder='Password' type='password' />
-                <input onChange={(e) => setLocation(e.target.value)} name='location' value={location} placeholder='Location' type='text' />
-                <button type="button" onClick={AddUserDetails}>Submit</button>
-            </form>
-        </div>
-    );
-};
+        <>
+            <div class="container">
+                <div className="heading">
+                    <h1>Sign Up</h1>
+                </div>
+                <div class="formBox">
+                    <form>
+                        <CSRFTOKEN />
+                        <input onChange={(e)=>  setName(e.target.value)} name='name' value={name}  placeholder='Name'  type='text' ></input>
+                        <input onChange={(e)=>  setEmail(e.target.value)} name='email' value={email}  placeholder='Email'  type='text'></input>
+                        <input onChange={(e)=>  setPhoneNumber(e.target.value)} name='phoneNumber' value={phoneNumber}  placeholder='Phone Number'  type='number'></input>
+                        <input onChange={(e)=>  setPassword(e.target.value)} name='password' value={password}  placeholder='Password'  type='password'></input>
+                        <input onChange={(e)=>  checkPassword(e.target.value)} name='confirmPassword' value={confirmPassword}  placeholder='Confirm Password'  type='password'></input>
+                        <input onChange={(e)=>  setLocation(e.target.value)} name='location' value={location}  placeholder='Location'  type='location'></input>
+                        <section className="formButton">
+                            <Link to="/SignIn"><button>Already an User?</button></Link>
+                            <button class="submitButton" onClick={AddUserDetails}>Submit</button>
+                        </section>
+                    </form>
+                </div>
+            </div>
+        </>  
+    )
+}
+
 
 export default SignUp;
