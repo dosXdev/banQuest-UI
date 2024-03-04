@@ -8,13 +8,13 @@
     justify-content: center;
     align-items: center;
     align-content: space-around;
-    width: 600px;
-    height: 500px;
+    width: 40%;
+    height: 15%;
     margin-right: auto;
     margin-left: auto;
     background: #FAF9F6;
-    padding: 5%;
-    border-radius: 5%;
+    padding: 2% 5% 2%;
+    border-radius: 20px 20px;
 }
 
 .formBox{
@@ -38,7 +38,7 @@ input{
     color: #2C3E50;
 }
 
-button{
+.submitButton{
       outline: none;
       background: #E67E22;
       width: 40%;
@@ -49,10 +49,18 @@ button{
       font-weight: bolder;
       text-transform: uppercase;
       cursor: pointer;
-      margin: 2% 30%;
+      margin: 2%;
+}
+
+.formButton{
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .heading{
     color: #2C3E50;
     margin-bottom: 5%;
 }
+

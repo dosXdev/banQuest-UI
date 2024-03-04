@@ -1,5 +1,6 @@
 import React , {useState} from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import './SignUp.css';
 
 const SignUp = () => {
@@ -56,7 +57,10 @@ const SignUp = () => {
                         <input onChange={(e)=>  setPassword(e.target.value)} name='password' value={password}  placeholder='Password'  type='password'></input>
                         <input onChange={(e)=>  checkPassword(e.target.value)} name='confirmPassword' value={confirmPassword}  placeholder='Confirm Password'  type='password'></input>
                         <input onChange={(e)=>  setLocation(e.target.value)} name='location' value={location}  placeholder='Location'  type='location'></input>
-                        <button onClick={AddUserDetails}>Submit</button>
+                        <section className="formButton">
+                            <Link to="/SignIn"><button>Already an User?</button></Link>
+                            <button class="submitButton" onClick={AddUserDetails}>Submit</button>
+                        </section>
                     </form>
                 </div>
             </div>

@@ -10,7 +10,7 @@ const Home = () => {
                 </li>
                 <li>
                     {/* Endpoint to route to SignUp component */}
-                    <Link to="/SignUp">SignUp</Link>
+                    <Link to="/SignIn">SignIn</Link>
                 </li>
         </ul>
     )
