@@ -1,6 +1,6 @@
 import React , {useState} from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './SignUp.css';
 axios.defaults.withCredentials = true
 axios.defaults.xsrfCookieName = 'XSRF-TOKEN'; // Set the default CSRF token cookie name
@@ -26,6 +26,12 @@ const SignUp = () => {
     // useEffect(() => {
     //     fetchCsrfToken();
     // }, []);
+
+    const navigate = useNavigate(); 
+
+    const handleSignInClick = () => {
+        navigate('/SignIn'); 
+    };
     
     function getCookie(name) {
         let cookieValue = null;
@@ -111,7 +117,7 @@ const SignUp = () => {
                         <input onChange={(e)=>  checkPassword(e.target.value)} name='confirmPassword' value={confirmPassword}  placeholder='Confirm Password'  type='password'></input>
                         <input onChange={(e)=>  setLocation(e.target.value)} name='location' value={location}  placeholder='Location'  type='location'></input>
                         <section className="formButton">
-                            <Link to="/SignIn"><button>Already an User?</button></Link>
+                            <button className="submitButton" onClick={handleSignInClick}>Already an User</button>
                             <button class="submitButton" onClick={AddUserDetails}>Submit</button>
                         </section>
                     </form>
