@@ -55,7 +55,7 @@ const SignUp = () => {
     
     const CSRFTOKEN = () => {
         // set csrf token cookie
-        axios.get('http://localhost:8000/api/get_csrf_token/');
+        axios.get('http://localhost:8000/api/set_csrf_token/');
         const csrftoken = getCookie('XSRF-TOKEN');
         console.log('CSFR Token in CSRFTOKEN:', csrftoken);
         return (
@@ -82,7 +82,7 @@ const SignUp = () => {
             try {
                 const csrftoken = getCookie('XSRF-TOKEN');
                 await axios.post(
-                    'http://localhost:8000/api/debug/users/signup/',
+                    'http://localhost:8000/api/test/signup/',
                     formData, 
                     {
                         withCredentials: true,
@@ -103,11 +103,11 @@ const SignUp = () => {
 
     return (
         <>
-            <div class="container">
+            <div className="container">
                 <div className="heading">
                     <h1>Sign Up</h1>
                 </div>
-                <div class="formBox">
+                <div className="formBox">
                     <form>
                         <CSRFTOKEN />
                         <input onChange={(e)=>  setName(e.target.value)} name='name' value={name}  placeholder='Name'  type='text' ></input>
@@ -118,7 +118,7 @@ const SignUp = () => {
                         <input onChange={(e)=>  setLocation(e.target.value)} name='location' value={location}  placeholder='Location'  type='location'></input>
                         <section className="formButton">
                             <button className="submitButton" onClick={handleSignInClick}>Already an User</button>
-                            <button class="submitButton" onClick={AddUserDetails}>Submit</button>
+                            <button className="submitButton" onClick={AddUserDetails}>Submit</button>
                         </section>
                     </form>
                 </div>
